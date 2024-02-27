@@ -1,7 +1,7 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 # ARGUMENTS
-ARG SDK_MANAGER_VERSION=1.8.0-10363
+ARG SDK_MANAGER_VERSION=2.0.0-11405
 ARG SDK_MANAGER_DEB=sdkmanager_${SDK_MANAGER_VERSION}_amd64.deb
 ARG GID=1000
 ARG UID=1000
@@ -19,6 +19,12 @@ RUN useradd -m $USERNAME && \
         # Replace 1000 with your user/group id
         usermod  --uid ${UID} $USERNAME && \
         groupmod --gid ${GID} $USERNAME
+
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ America/Los_Angeles
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_us:en
+ENV LC_ALL en_US.UTF-8
 
 # install package
 RUN yes | unminimize && \
@@ -46,6 +52,10 @@ RUN yes | unminimize && \
         qemu-user-static \
         binfmt-support \
         libxshmfence1 \
+        locales \
+        sudo \
+        libdrm2 \
+        libgbm-dev \
         && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
