@@ -56,6 +56,7 @@ RUN yes | unminimize && \
         sudo \
         libdrm2 \
         libgbm-dev \
+        usbutils \
         && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*

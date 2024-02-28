@@ -49,6 +49,21 @@ Please launch NVIDIA SDK Manager by the following command.
 ```
 sdkmanager
 ```
+or for CLI version in terminal.  I could not get the web browser to load to log in.
+
+```
+sdkmanager --cli
+```
+
+Download and attempt to install everything.  Install fails, but all the files are downloaded.  Stop SDKManger and run these commands
+
+```bash
+cd /home/jetpack/nvidia/nvidia_sdk/JetPack_5.1.3_Linux_JETSON_AGX_XAVIER_TARGETS/Linux_for_Tegra
+sudo ./apply_binaries.sh
+sudo ./tools/l4t_flash_prerequisites.sh
+sudo ./flash.sh jetson-agx-xavier-devkit nvme0n1p1
+```
+
 
 Please refer to <https://docs.nvidia.com/sdk-manager/install-with-sdkm-jetson/index.html>.
 And, I tested in the following setting.
