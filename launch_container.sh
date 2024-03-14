@@ -9,12 +9,17 @@ mkdir -p jetpack_home/nvidia
 mkdir -p jetpack_home/Downloads
 JETPACK_HOME=$(realpath ./jetpack_home)
 
+#mkdir -p /media/rico/passport/nvidia/jetpack_home/nvidia
+#mkdir -p /media/rico/passport/nvidia/jetpack_home/Downloads
+#JETPACK_HOME=$(realpath /media/rico/passport/nvidia/jetpack_home)
+
 docker run --privileged --rm -it \
            --volume=$XSOCK:$XSOCK:rw \
            --volume=$XAUTH:$XAUTH:rw \
            --volume=/dev:/dev:rw \
            --volume="$JETPACK_HOME/nvidia":/home/jetpack/nvidia:rw \
            --volume="$JETPACK_HOME/Downloads":/home/jetpack/Downloads:rw \
+	   --volume=/media:/media:rw \
            --shm-size=1gb \
            --env="XAUTHORITY=${XAUTH}" \
            --env="DISPLAY=${DISPLAY}" \
